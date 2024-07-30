@@ -1,1 +1,1 @@
-# dailyCodingPractise
+# CodingPractise

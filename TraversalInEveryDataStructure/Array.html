@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Traversal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .array {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .array div {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .highlight {
+            background-color: #28a745 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="array" id="arrayContainer"></div>
+        <button onclick="traverseArray()">Traverse Array</button>
+    </div>
+
+    <script>
+        const array = [1, 2, 3, 4, 5];
+        const arrayContainer = document.getElementById('arrayContainer');
+
+        function displayArray() {
+            arrayContainer.innerHTML = '';
+            array.forEach((item, index) => {
+                const element = document.createElement('div');
+                element.textContent = item;
+                element.id = 'item-' + index;
+                arrayContainer.appendChild(element);
+            });
+        }
+
+        function traverseArray() {
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index > 0) {
+                    document.getElementById('item-' + (index - 1)).classList.remove('highlight');
+                }
+                if (index < array.length) {
+                    document.getElementById('item-' + index).classList.add('highlight');
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 500);
+        }
+
+        displayArray();
+    </script>
+</body>
+</html>

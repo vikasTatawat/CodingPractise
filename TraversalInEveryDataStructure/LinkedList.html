@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .node {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+        .found {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Linked List Search</h1>
+    <div id="linkedList"></div>
+    <input type="text" id="searchValue" placeholder="Enter value to search">
+    <button onclick="searchLinkedList()">Search</button>
+
+    <script>
+        class Node {
+            constructor(value) {
+                this.value = value;
+                this.next = null;
+            }
+        }
+
+        class LinkedList {
+            constructor() {
+                this.head = null;
+            }
+
+            append(value) {
+                const newNode = new Node(value);
+                if (!this.head) {
+                    this.head = newNode;
+                    return;
+                }
+                let current = this.head;
+                while (current.next) {
+                    current = current.next;
+                }
+                current.next = newNode;
+            }
+
+            search(value) {
+                let current = this.head;
+                while (current) {
+                    if (current.value == value) {
+                        return current;
+                    }
+                    current = current.next;
+                }
+                return null;
+            }
+
+            display() {
+                const linkedListDiv = document.getElementById('linkedList');
+                linkedListDiv.innerHTML = '';
+                let current = this.head;
+                while (current) {
+                    const nodeDiv = document.createElement('div');
+                    nodeDiv.className = 'node';
+                    nodeDiv.textContent = current.value;
+                    linkedListDiv.appendChild(nodeDiv);
+                    current = current.next;
+                }
+            }
+        }
+
+        const linkedList = new LinkedList();
+        linkedList.append(10);
+        linkedList.append(20);
+        linkedList.append(30);
+        linkedList.append(40);
+        linkedList.display();
+
+        function searchLinkedList() {
+            const searchValue = document.getElementById('searchValue').value;
+            const result = linkedList.search(searchValue);
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => node.classList.remove('found'));
+            if (result) {
+                nodes.forEach(node => {
+                    if (node.textContent == searchValue) {
+                        node.classList.add('found');
+                    }
+                });
+            } else {
+                alert('Value not found in the linked list');
+            }
+        }
+    </script>
+</body>
+</html>

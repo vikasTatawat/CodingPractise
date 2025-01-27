@@ -11,4 +11,5 @@ function minimumWaitingTime(queries) {
   return duration;
 }
 
+
 console.log(minimumWaitingTime(queries));

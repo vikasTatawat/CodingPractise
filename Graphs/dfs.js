@@ -9,6 +9,7 @@ class Node {
       return this;
     }
   
+    
     depthFirstSearch(array) {
         array.push(this.name);
         for (const element of this.children) {

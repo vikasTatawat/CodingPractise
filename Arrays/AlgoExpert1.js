@@ -5,7 +5,7 @@ function twoNumberSum(array, targetSum) {
   // Write your code here.
   let left = 0;
   let right = array.length - 1;
-  let newArray = array.sort((a, b) => a - b);
+  let newArray = array .sort((a, b) => a - b);
 
   let finalArray = [];
   while (left < right) {
